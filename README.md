@@ -1,7 +1,10 @@
 # Sommerpraktikum-2025
 
-Mockup:
-https://www.figma.com/design/8KY54n69wGzfd7w4e3OqkO/SAP-EXTERNAL-Fiori-Web-Stencils-v1.96--Community-?node-id=15792-8480&t=0WvIvc5LnnDRz1rr-0
+Mockup (neu link) :
+
+https://www.figma.com/design/QR2XaFj7QnkfAuRReZWq3j/Web_SAP_FN?node-id=0-1&t=siqnBfRrWr6kz57N-1 
+
+
 Um den Server zu starten muss zuerst Node.js installiert werden
 Danach müsst ihr in mit dem Terminal in den Ordner Brunos
 folgende Befehle müssen ausgeführt werden
