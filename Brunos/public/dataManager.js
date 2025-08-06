@@ -1,3 +1,5 @@
+import { generateUUID } from "./utils.js"; // Importiere die UUID-Funktion
+
 export async function loadData(url = '/api/data') {
   const res = await fetch(url); // Diese Funktion lädt Daten von einer angegebenen URL
   if (!res.ok) throw new Error('Fehler beim Laden der Daten');
@@ -20,8 +22,8 @@ export async function addEintrag(neuerEintrag, data = null) { // Diese Funktion 
   }
 
   // Falls keine ID vorhanden ist, automatisch generieren
-  if (!neuerEintrag.id) {
-    neuerEintrag.id = generateUUID();
+  if (!neuerEintrag.ID) {
+    neuerEintrag.ID = generateUUID();
   }
 
   data.push(neuerEintrag);
@@ -29,11 +31,11 @@ export async function addEintrag(neuerEintrag, data = null) { // Diese Funktion 
   return data;
 }
 
-export async function delEintragId(id, data = null) { // Diese Funktion entfernt einen Eintrag anhand seiner ID
+export async function delEintragId(ID, data = null) { // Diese Funktion entfernt einen Eintrag anhand seiner ID
   if (!data) { 
     data = await loadData(); // <-- richtige Initialisierung
   }
-  const new_data = data.filter(eintrag => eintrag.id !== id);
+  const new_data = data.filter(eintrag => eintrag.ID !== ID);
   await saveData(new_data); // Speichern der aktualisierten Daten
   return new_data;
 }
@@ -87,7 +89,7 @@ export async function sortiereNeueste(data = null) { // Diese Funktion sortiert 
     if (!data) {
     data = await loadData(); // <-- richtige Initialisierung
   }
-  return [...data].sort((a, b) => new Date(b.start_datum) - new Date(a.start_datum));
+  return [...data].sort((a, b) => new Date(b.startdatum) - new Date(a.startdatum));
 }
 
 // Nach ältestem Datum sortieren (start_date), älteste zuerst
@@ -95,5 +97,5 @@ export async function sortiereAelteste(data = null) { // Diese Funktion sortiert
     if (!data) {
     data = await loadData(); // <-- richtige Initialisierung
   }
-  return [...data].sort((a, b) => new Date(a.start_datum) - new Date(b.start_datum));
+  return [...data].sort((a, b) => new Date(a.startdatum) - new Date(b.startdatum));
 }

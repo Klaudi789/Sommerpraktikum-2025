@@ -1,46 +1,63 @@
-/**
- * Generiert eine HTML-Tabelle aus beliebigen Daten und Feldern
- * @param {Array} datenListe - Die Datensätze, die angezeigt werden sollen
- * @param {Array} felder - Die Feldnamen, die als Spalten angezeigt werden (Reihenfolge relevant)
- * @param {string} containerId - Die ID des HTML-Containers, in dem die Tabelle eingefügt wird
- */
 export function renderFlexibleTable(datenListe, felder, containerId) {
   const container = document.getElementById(containerId);
-
-  if (!container || !Array.isArray(datenListe) || datenListe.length === 0) {
-    container.innerHTML = "<p>Keine Daten zum Anzeigen.</p>";
+  if (!container) {
+    console.error(`Kein Container mit der ID "${containerId}" gefunden.`);
     return;
   }
 
-  // Tabelle erzeugen
-  const table = document.createElement('table');
-  table.classList.add('table', 'table-striped', 'table-bordered');
-
-  // Kopfzeile
-  const thead = document.createElement('thead');
-  const headRow = document.createElement('tr');
-  for (const feld of felder) {
-    const th = document.createElement('th');
-    th.textContent = feld.charAt(0).toUpperCase() + feld.slice(1); // z. B. "amount" → "Amount"
-    headRow.appendChild(th);
+  if (!Array.isArray(datenListe) || datenListe.length === 0) {
+    container.innerHTML = '<p>Keine Daten zum Anzeigen.</p>';
+    return;
   }
-  thead.appendChild(headRow);
+
+  const table = document.createElement('table');
+  table.classList.add('activity-table');
+
+  // Tabellenkopf erstellen
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+
+  felder.forEach(feld => {
+    const th = document.createElement('th');
+    const feldname = feld.charAt(0).toUpperCase() + feld.slice(1);
+    th.textContent = feld === 'betrag' ? `${feldname} (EUR)` : feldname;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  // Tabellenkörper
+  // Tabellenkörper erstellen
   const tbody = document.createElement('tbody');
-  for (const eintrag of datenListe) {
+
+  datenListe.forEach(eintrag => {
     const row = document.createElement('tr');
-    for (const feld of felder) {
+
+    felder.forEach(feld => {
       const td = document.createElement('td');
-      td.textContent = eintrag[feld] ?? ""; // leeres Feld, falls nicht vorhanden
+
+      if (feld === 'betrag') {
+        const betrag = parseFloat(eintrag[feld]);
+        const type = eintrag.type;
+        const istIncome = type === 'income';
+        const istExpense = type === 'expense';
+
+        td.textContent = `${istIncome ? '+' : istExpense ? '-' : ''} ${betrag.toFixed(2)} (EUR)`;
+
+        td.classList.add(istIncome ? 'plus' : istExpense ? 'minus' : '');
+      } else {
+        td.textContent = eintrag[feld] ?? '';
+      }
+
       row.appendChild(td);
-    }
+    });
+
     tbody.appendChild(row);
-  }
+  });
+
   table.appendChild(tbody);
 
-  // In Container einfügen
-  container.innerHTML = "";
+  // Tabelle im Container einfügen
+  container.innerHTML = ''; // Leeren
   container.appendChild(table);
 }
