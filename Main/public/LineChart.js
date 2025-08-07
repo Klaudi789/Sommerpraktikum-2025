@@ -1,6 +1,6 @@
 // linechart.js
 // Diese Funktion lädt die Daten aus einer JSON-Datei und erzeugt das Chart.
-async function erstelleLineChartAusDatei(canvasId, datenPfad) {
+export async function erstelleLineChartAusDatei(canvasId, datenPfad) {
   const response = await fetch(datenPfad);
   if (!response.ok) {
     console.error("Fehler beim Laden der Datei:", datenPfad);
@@ -98,3 +98,4 @@ async function erstelleLineChartAusDatei(canvasId, datenPfad) {
   const ctx = document.getElementById(canvasId).getContext('2d');
   new Chart(ctx, { type: 'line', data: data, options: options });
 }
+
