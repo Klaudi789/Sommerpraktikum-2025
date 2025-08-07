@@ -75,6 +75,9 @@ async function erstelleLineChartAusDatei(canvasId, datenPfad) {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
+    devicePixelRatio: 1.5,
+
     plugins: {
       legend: { position: 'top' },
       tooltip: { mode: 'index', intersect: false }

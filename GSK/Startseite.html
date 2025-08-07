@@ -72,66 +72,74 @@
     <!-- Shell Bar End -->
     <!-- First Block Beginn -->
 
-    <div class="main-content">
-        <div class="account-summary">
-            <div class="greeting">Hallo, {Kunde}</div>
-            <div class="balance">Der Kontostand beträgt <span class="balance-amount">20,000.10&nbsp;€</span></div>
-            <div class="activity-title">Letzte Aktivität</div>
-            <div class="activity-table-wrapper">
-                <table class="activity-table">
-                    <thead>
-                        <tr>
-                            <th>Bezeichnung</th>
-                            <th>Datum</th>
-                            <th>Betrag (EUR)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Jologa</td>
-                            <td>11.05.2021</td>
-                            <td class="plus">+ 12,600.16</td>
-                        </tr>
-                        <tr>
-                            <td>Exotic Liquids</td>
-                            <td>09.05.2021</td>
-                            <td class="minus">- 4,999.98</td>
-                        </tr>
-                        <tr>
-                            <td>Lyngbysild</td>
-                            <td>08.05.2021</td>
-                            <td class="minus">- 2,100</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="software-panel">
-            <button class="add-btn">Hinzufügen</button>
-            <div class="software-title">Entdecke SAP BXP!</div>
-            <div class="software-buttons">
-                <button class="software-btn">Verwalten</button>
-                <button class="software-btn">ERP</button>
-                <button class="software-btn">Premium Support</button>
-            </div>
-                </div>
-    <div class="line-chart-container activity-table-wrapper">
-        <div class="activity-title">Prognose</div>
-        <canvas id="lineChart"></canvas>
+ <div class="main-content">
+  <!-- Kontozusammenfassung -->
+  <div class="account-summary">
+    <div class="greeting">Hallo, {Kunde}</div>
+    <div class="balance">
+      Der Kontostand beträgt
+      <span class="balance-amount">20,000.10&nbsp;€</span>
+    </div>
+    <div class="activity-title">Letzte Aktivität</div>
+    <div class="activity-table-wrapper">
+      <table class="activity-table">
+        <thead>
+          <tr>
+            <th>Bezeichnung</th>
+            <th>Datum</th>
+            <th>Betrag (EUR)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jologa</td>
+            <td>11.05.2021</td>
+            <td class="plus">+ 12,600.16</td>
+          </tr>
+          <tr>
+            <td>Exotic Liquids</td>
+            <td>09.05.2021</td>
+            <td class="minus">- 4,999.98</td>
+          </tr>
+          <tr>
+            <td>Lyngbysild</td>
+            <td>08.05.2021</td>
+            <td class="minus">- 2,100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <script>
-    // Nur der Pfad zur JSON und der Aufruf!
-    erstelleLineChartAusDatei('lineChart', 'data.json');
-  </script>
-<div class="bar-chart-container activity-table-wrapper">
-  <div class="activity-title">Balkendiagramm</div>
-  <canvas id="stackedBarChart"></canvas>
+
+  <!-- Software Panel -->
+  <div class="software-panel">
+    <button class="add-btn">Hinzufügen</button>
+    <div class="software-title">Entdecke SAP BXP!</div>
+    <div class="software-buttons">
+      <button class="software-btn">Verwalten</button>
+      <button class="software-btn">ERP</button>
+      <button class="software-btn">Premium Support</button>
+    </div>
+  </div>
+
+  <!-- Diagramme nebeneinander -->
+<div class="chart-row">
+  <div class="chart-container" style="width: 600px; height: 400px;">
+    <div class="chart-title">Prognose</div>
+    <canvas id="lineChart"></canvas>
+  </div>
+  <div class="chart-container" style="width: 600px; height: 400px;">
+    <div class="chart-title">Balkendiagramm</div>
+    <canvas id="stackedBarChart"></canvas>
+  </div>
 </div>
-    <script>
-        // Nur der Pfad zur JSON und der Aufruf!
-        erstelleBarchartAusDatei('stackedBarChart', 'data.json');
-    </script>
-        
+
+</div>
+
+<script>
+  erstelleLineChartAusDatei('lineChart', 'data.json');
+  erstelleBarchartAusDatei('stackedBarChart', 'data.json');
+</script>
 
 </div>
 

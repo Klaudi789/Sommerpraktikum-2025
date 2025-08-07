@@ -65,9 +65,12 @@ async function erstelleBarchartAusDatei(canvasId, datenPfad) {
 
     const options = {
       responsive: true,
+      maintainAspectRatio: false,
+          devicePixelRatio: 1.5,
+
       plugins: {
         legend: {
-          position: "bottom", // Legende unten
+          position: "top", // Legende unten
         },
         tooltip: {
           callbacks: {
