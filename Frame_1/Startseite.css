@@ -226,7 +226,7 @@
   box-sizing: border-box;
   border: 1px solid #ababab;
   border-radius: 50%;
-  /* Удалите position: absolute; left: 0; top: 0; */
+
 }
   .avatar-btn {
     background: none;
@@ -532,3 +532,4 @@
   background: #f5faff;
 }
 
+/*End of Second Block */

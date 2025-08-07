@@ -66,6 +66,7 @@
         };
     </script>
     <!-- Shell Bar End -->
+
     <!-- First Block Beginn -->
 
     <div class="main-content">
@@ -102,6 +103,9 @@
                 </table>
             </div>
         </div>
+  <!-- End of First Block -->
+
+  <!-- Second Block Beginn -->
         <div class="software-panel">
             <button class="add-btn">Eintrag hinzufügen</button>
             <div class="software-title">Entdecke {Name_unserer_Software}!</div>
@@ -114,12 +118,9 @@
             </div>
         </div>
     </div>
+    <!-- End of Second Block -->
 
-
-
-    <!-- End of First Block -->
-
-    <!-- Модальное окно -->
+    <!-- Modal for Registration/Login -->
 <div id="id01" class="modal">
   <div class="modal-content" onclick="event.stopPropagation();">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Schließen">&times;</span>
@@ -175,14 +176,13 @@ function showTab(tab) {
   document.getElementById('tab-login').classList.toggle('active', tab === 'login');
 }
 
-// Закрытие по клику на фон
+// Open the modal when the user clicks on the avatar button
 document.getElementById('id01').onclick = function(e) {
   if (e.target === this) this.style.display = 'none';
 };
 </script>
-    <!-- ...existing code... -->
+
 
 </body>
 </html>
 
-<!-- Shell Bar End -->
