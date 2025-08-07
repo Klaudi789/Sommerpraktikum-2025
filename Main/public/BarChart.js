@@ -1,5 +1,5 @@
 // Diese Funktion lädt die Daten aus einer JSON-Datei und erstellt ein gestapeltes Balkendiagramm.
-async function erstelleBarchartAusDatei(canvasId, datenPfad) {
+export async function erstelleBarchartAusDatei(canvasId, datenPfad) {
   try {
     const response = await fetch(datenPfad);
     if (!response.ok) {
