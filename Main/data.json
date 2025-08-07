@@ -58,5 +58,17 @@
     "enddatum": "unbegrenzt",
     "editable": false,
     "konto": "Konto Alpha"
+  },
+  {
+    "name": "Daten",
+    "type": "expense",
+    "intervall": "einmalig",
+    "startdatum": "2025-08-05",
+    "enddatum": "2025-08-09",
+    "betrag": 5,
+    "description": "",
+    "editable": true,
+    "konto": "konto1",
+    "ID": "3ce274953f16"
   }
 ]

@@ -3,7 +3,7 @@ body {
 }
 
 .software-btn_mini {
-  padding-top: 150px;
+  
   flex: 1 1 0;
   min-width: 30px;
   min-height: 35px;
@@ -103,7 +103,6 @@ body {
   flex: none;
   order: 1;
   flex-grow: 0;
-  background: linear-gradient(180deg, #2ba7e7 0%, #145fad 48.96%, #274494 100%);
 }
 
 
