@@ -88,11 +88,12 @@
   width: auto;      
   height: 50px;     
   border-radius: 4px;
+  margin-top: 8px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 20px;
+  line-height: 36px;
   color: #fff;
   flex: none;
   order: 2;
@@ -335,7 +336,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 95px;
   gap: 64px;
 }
 
@@ -346,19 +347,18 @@
 
 .software-panel {
   min-width: 420px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 16px;
-  padding: 32px 32px 40px 32px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
   display: flex;
   flex-direction: column;
   align-items: stretch;
   position: relative;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 .add-btn {
-  align-self: flex-end; /* Кнопка у правого края */
+  align-self: flex-end;
   background: #1976d2;
   color: #fff;
   border: none;
@@ -379,6 +379,16 @@
   font-size: 20px;
   margin-bottom: 28px;
   text-align: center;
+}
+
+.software-buttons-wrapper {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  display: flex;
+  justify-content: center;
 }
 
 .software-buttons {
@@ -414,4 +424,3 @@
   background: #f5faff;
 }
 
-/* End of Second Block */

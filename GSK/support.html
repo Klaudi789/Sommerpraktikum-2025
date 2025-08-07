@@ -183,9 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
            const chatCompletion = await groq.chat.completions.create({
                 messages: [
                     { role: "user", content: message },
-                    { role: "system", content: "This is a chatbot conversation." }
+                    { role: "system", "content": "Bitte in deutsch antworten. Du bist ein virtueller Assistent für eine Finanz-Webapplikation namens ‚Das Kundencenter – Für das Tool für klare Finanzen namend BXP‘. Deine Antworten sind sehr knapp und auf den Punkt gebracht. Folgende Daten zu Finanzen stehen dir zur Verfügung: \"type, name, betrag, intervall, konto\\nincome, Gehalt, 3000, monatlich, Konto 1\\nexpense, Miete, 900, monatlich, Konto 2\\nincome, Steuerrückzahlung, 1200, jährlich, Konto 1\\nexpense, Reparatur, 450, einmalig, Konto 1\\nexpense, Netflix, 5, monatlich, Konto 1\\nexpense, Test Ausgaben, 100, einmalig, Konto 2\\nexpense, Test Ausgabeneintrag, 100, einmalig, Konto 1\"}" }
                 ],
-                model: "llama-3.1-8b-instant",
+                model: "llama-3.3-70b-versatile",
                 temperature: 1,
                 max_completion_tokens: 224,
                 top_p: 1,
@@ -205,4 +205,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 
+    
 </html>

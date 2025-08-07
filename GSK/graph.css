@@ -1,109 +1,181 @@
-    .line-chart-container {
-      position: absolute;
-      width: 726px;
-      height: 315px;
-      left: 185px;
-      top: 611px;
-      background: #FFFFFF;
-    }
+/*──────────────────────────────────────────────────────────────────────────────
+  Layout
+──────────────────────────────────────────────────────────────────────────────*/
 
-    /* Monatstexte */
-    .month-label {
-      position: absolute;
-      height: 15px;
-      font-family: 'Roboto', sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 15px;
-      text-align: center;
-      color: #32363A;
-    }
+/* Flex‐row for multiple charts */
+.chart-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 40px;
+  padding: 0 20px;
+}
 
-    /* Trennlinien */
-    .separator-line {
-      position: absolute;
-      background: #CCCCCC;
-      height: 2px;
-    }
+/* Wrapper around individual charts (optional) */
+.chart-wrapper {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  box-sizing: content-box;
+  margin-top: 8px;
+  padding: 12px 16px 32px;
+}
 
-    /* Scrollbar */
-    .scrollbar {
-      box-sizing: border-box;
-      position: absolute;
-      width: 12px;
-      height: 878px;
-      border: 1px solid #000000;
-      background: #B2B2B2;
-      transform: rotate(-90deg);
-    }
+/* Container for each chart panel */
+.chart-container {
+  position: relative;
+  flex: 1 1 45%;
+  min-width: 300px;
+  min-height: 300px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  padding: 16px;
+  box-sizing: border-box;
+}
 
-    /* Legende */
-    .legend {
-      position: absolute;
-      visibility: hidden;
-      width: 155px;
-      height: 87px;
-    }
+/* Title label that floats above a .chart-container */
+.chart-title {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;    /* genauso wie bei .activity-title */
+  font-size: 16px;     /* passe an (z.B. 14px/16px whatever .activity-title nutzt) */
+  line-height: 20px;   /* passe an */
+  color: #515559;       /* derselbe Farbwert wie bei .activity-title */
+  position: absolute;
+  top: -30px;
+  left: -8px;
+  padding: 0 8px;
+  z-index: 2;
+}
 
-    /* Linien für das Diagramm */
-    .chart-line {
-      position: absolute;
-      border: 1px solid;
-    }
+/* Ensure canvases fill their container */
+.chart-container canvas {
+  display: block;
+  width: 100%;
+  height: calc(100% - 40px);
+  margin-top: 32px;
+}
 
-    .chart-line-dashed {
-      position: absolute;
-      border: 1px dashed;
-    }
+/*──────────────────────────────────────────────────────────────────────────────
+  Chart Elements
+──────────────────────────────────────────────────────────────────────────────*/
 
-    /* Ovale für das Diagramm */
-    .chart-oval {
-      position: absolute;
-      background: #E8743B;
-      border: 1px solid #FFFFFF;
-    }
+/* Horizontal separator line */
+.separator-line {
+  position: absolute;
+  top: 0;    /* adjust as needed */
+  left: 0;   /* adjust as needed */
+  width: 100%;
+  height: 2px;
+  background: #CCCCCC;
+}
 
-    /* Zusätzliche Elemente */
-    .pizza-forecast {
-      position: absolute;
-      width: 128px;
-      height: 15px;
-      left: calc(50% - 128px/2 + 540px);
-      top: calc(50% - 15px/2 - 176px);
-      font-family: 'Roboto', sans-serif;
-      font-style: normal;
-      font-size: 13px;
-      line-height: 15px;
-      text-align: center;
-      color: #32363A;
-    }
+/* Month label under the x‐axis */
+.month-label {
+  position: absolute;
+  height: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  color: #32363A;
+}
 
-    .ice-cream-forecast {
-      position: absolute;
-      width: 155px;
-      height: 15px;
-      left: calc(50% - 155px/2 + 553.5px);
-      top: calc(50% - 15px/2 - 224px);
-      font-family: 'Roboto', sans-serif;
-      font-style: normal;
-      font-size: 13px;
-      line-height: 15px;
-      text-align: center;
-      color: #32363A;
-    }
+/* Data lines */
+.chart-line {
+  position: absolute;
+  border: 1px solid currentColor;
+}
+.chart-line-dashed {
+  position: absolute;
+  border: 1px dashed currentColor;
+}
+
+/* Data points */
+.chart-oval {
+  position: absolute;
+  width: 8px;    /* adjust diameter */
+  height: 8px;
+  background: #E8743B;
+  border: 1px solid #FFF;
+  border-radius: 50%;
+}
+
+/* Legend box (hidden by default) */
+.legend {
+  position: absolute;
+  visibility: hidden;
+  width: 155px;
+  height: 87px;
+}
+
+/* Vertical scrollbar for overflow */
+.scrollbar {
+  box-sizing: border-box;
+  position: absolute;
+  width: 12px;
+  height: 878px;
+  border: 1px solid #000;
+  background: #B2B2B2;
+  transform: rotate(-90deg);
+}
+
+/*──────────────────────────────────────────────────────────────────────────────
+  Forecast Labels
+──────────────────────────────────────────────────────────────────────────────*/
+
+.pizza-forecast,
+.ice-cream-forecast {
+  position: absolute;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  color: #32363A;
+}
+
+.pizza-forecast {
+  width: 128px;
+  height: 15px;
+  left: calc(50% + 540px - 64px);
+  top: calc(50% - 176px - 7.5px);
+}
+
+.ice-cream-forecast {
+  width: 155px;
+  height: 15px;
+  left: calc(50% + 553.5px - 77.5px);
+  top: calc(50% - 224px - 7.5px);
+}
+
+/*──────────────────────────────────────────────────────────────────────────────
+  Section Header
+──────────────────────────────────────────────────────────────────────────────*/
 
 .text-ueberschrift {
   position: absolute;
-  height: 31px;
+  top: calc(50% + 26.5px - 15.5px);
   left: 6.56%;
   right: 83.85%;
-  top: calc(50% - 31px / 2 + 26.5px);
-
+  height: 31px;
   font-family: 'Roboto', sans-serif;
-  font-style: normal;
   font-weight: 300;
   font-size: 24px;
-  line-height: 36px; /* 150% von 24px */
+  line-height: 36px;
   color: #515559;
+}
+
+/*──────────────────────────────────────────────────────────────────────────────
+  Responsive Breakpoint
+──────────────────────────────────────────────────────────────────────────────*/
+
+@media (max-width: 768px) {
+  .chart-row {
+    flex-direction: column;
+  }
 }
