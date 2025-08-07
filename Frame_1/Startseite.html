@@ -55,9 +55,10 @@
                 <span class="icon">&#xe033;</span>
             </div>
             <div class="base-User-Actions-Menu">
-                <img src="avatar_bild.png" alt="User Avatar" class="avatar" width="32" height="32" />
+                <button class="avatar-btn" onclick="document.getElementById('id01').style.display='block'">
+                    <img src="avatar_bild.png" alt="User Avatar" class="avatar" width="32" height="32" />
+                </button>
             </div>
-        </div>
     </header>
     <script>
         document.querySelector('.base-Back-Button').onclick = function () {
@@ -113,12 +114,75 @@
             </div>
         </div>
     </div>
-    </div>
+
 
 
     <!-- End of First Block -->
-</body>
 
+    <!-- Модальное окно -->
+<div id="id01" class="modal">
+  <div class="modal-content" onclick="event.stopPropagation();">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Schließen">&times;</span>
+    <div class="modal-tabs">
+      <button id="tab-register" class="modal-tab active" onclick="showTab('register')">Registrieren</button>
+      <button id="tab-login" class="modal-tab" onclick="showTab('login')">Anmelden</button>
+    </div>
+    <form id="form-register" class="modal-form" action="/register" method="POST">
+      <div class="container">
+        <h1>Registrierungsformular</h1>
+        <p>Bitte füllen Sie dieses Formular aus, um ein Konto zu erstellen.</p>
+        <hr>
+        <label for="email"><b>E-Mail</b></label>
+        <input type="text" placeholder="Geben Sie Ihre E-Mail ein" name="email" required>
+        <label for="psw"><b>Passwort</b></label>
+        <input type="password" placeholder="Geben Sie Ihr Passwort ein" name="psw" required>
+        <label for="psw-repeat"><b>Passwort wiederholen</b></label>
+        <input type="password" placeholder="Wiederholen Sie Ihr Passwort" name="psw-repeat" required>
+        <label>
+          <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Angemeldet bleiben
+        </label>
+        <div class="clearfix">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Abbrechen</button>
+          <button type="submit" class="signup">Registrieren</button>
+        </div>
+      </div>
+    </form>
+    <form id="form-login" class="modal-form" action="/login" method="POST" style="display:none;">
+      <div class="container">
+        <h1>Anmelden</h1>
+        <p>Bitte melden Sie sich mit Ihren Zugangsdaten an.</p>
+        <hr>
+        <label for="login-email"><b>E-Mail</b></label>
+        <input type="text" placeholder="Geben Sie Ihre E-Mail ein" name="login-email" required>
+        <label for="login-psw"><b>Passwort</b></label>
+        <input type="password" placeholder="Geben Sie Ihr Passwort ein" name="login-psw" required>
+        <label>
+          <input type="checkbox" checked="checked" name="remember-login" style="margin-bottom:15px"> Angemeldet bleiben
+        </label>
+        <div class="clearfix">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Abbrechen</button>
+          <button type="submit" class="signup">Anmelden</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+function showTab(tab) {
+  document.getElementById('form-register').style.display = tab === 'register' ? 'block' : 'none';
+  document.getElementById('form-login').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+}
+
+// Закрытие по клику на фон
+document.getElementById('id01').onclick = function(e) {
+  if (e.target === this) this.style.display = 'none';
+};
+</script>
+    <!-- ...existing code... -->
+
+</body>
 </html>
 
 <!-- Shell Bar End -->
