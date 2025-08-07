@@ -1,0 +1,62 @@
+[
+  {
+    "ID": "a7b9c3f2d1e0",
+    "type": "income",
+    "name": "Bonuszahlung",
+    "description": "Jährlicher Bonus vom Arbeitgeber",
+    "betrag": 1500,
+    "intervall": "jährlich",
+    "startdatum": "2024-12-01",
+    "enddatum": "unbegrenzt",
+    "editable": true,
+    "konto": "Konto Alpha"
+  },
+  {
+    "ID": "b3d5e8a19f2c",
+    "type": "expense",
+    "name": "Stromrechnung",
+    "description": "Monatliche Stromkosten",
+    "betrag": 80,
+    "intervall": "monatlich",
+    "startdatum": "2023-05-01",
+    "enddatum": "unbegrenzt",
+    "editable": true,
+    "konto": "Konto Beta"
+  },
+  {
+    "ID": "c1f4a9b6e2d8",
+    "type": "income",
+    "name": "Freelance-Projekt",
+    "description": "Bezahlung für externes Projekt",
+    "betrag": 600,
+    "intervall": "einmalig",
+    "startdatum": "2025-03-15",
+    "enddatum": "2025-03-15",
+    "editable": true,
+    "konto": "Konto Gamma"
+  },
+  {
+    "ID": "de3b1c9a72f4",
+    "type": "expense",
+    "name": "Versicherung",
+    "description": "Jährliche Versicherungsgebühr",
+    "betrag": 350,
+    "intervall": "jährlich",
+    "startdatum": "2024-01-01",
+    "enddatum": "2029-01-01",
+    "editable": false,
+    "konto": "Konto Beta"
+  },
+  {
+    "ID": "fa7e49bde83c",
+    "type": "expense",
+    "name": "Fitnessstudio",
+    "description": "Monatlicher Mitgliedsbeitrag",
+    "betrag": 45,
+    "intervall": "monatlich",
+    "startdatum": "2022-06-01",
+    "enddatum": "unbegrenzt",
+    "editable": false,
+    "konto": "Konto Alpha"
+  }
+]

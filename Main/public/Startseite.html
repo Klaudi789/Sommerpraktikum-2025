@@ -21,6 +21,10 @@
             display: inline-block;
         }
     </style>
+    <link rel="stylesheet" href="graph.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="linechart.js"></script>
+    <script src="BarChart.js"></script>
 </head>
 
 <body>
@@ -109,8 +113,8 @@
 
 <script>
 
-  erstelleLineChartAusDatei('lineChart', 'Main\data.json');
-  erstelleBarchartAusDatei('stackedBarChart', 'Main\data.json');
+  erstelleLineChartAusDatei('lineChart', 'line_data.json');
+  erstelleBarchartAusDatei('stackedBarChart', 'line_data.json');
 </script>
 
     </div>
