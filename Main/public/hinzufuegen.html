@@ -20,6 +20,7 @@
             display: inline-block;
         }
     </style>
+    <link rel="stylesheet" href="chatbot.css" />
 </head>
 <body>
     <!-- Shell Bar Beginn -->
@@ -112,5 +113,96 @@
   </div>
 
   <script type="module" src="addEntry.js"></script>
+  <!-- Main JS (Modul) -->
+  <script type="module" src="./main.js"></script>
+    <button id="chatbotToggle" aria-label="Toggle Chatbot">?</button>
+    <div class="chatbot-container" id="chatbotContainer" role="dialog" aria-labelledby="chatbotHeader">
+        <div class="chatbot-header" id="chatbotHeader">BXP Support</div>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+        <div class="chatbot-input">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button>Send</button>
+        </div>
+    </div>
+<script type="module">
+import Groq from 'https://esm.sh/groq-sdk';
+
+const groq = new Groq({
+    apiKey: "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", // NICHT für Produktion!
+    baseUrl: "https://api.groq.com",
+    dangerouslyAllowBrowser: true
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const messagesContainer = document.getElementById('chatbotMessages');
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.querySelector('.chatbot-input button');
+
+    chatbotToggle.addEventListener('click', () => {
+        const isOpen = chatbotContainer.style.display === 'flex';
+        chatbotContainer.style.display = isOpen ? 'none' : 'flex';
+        chatbotToggle.textContent = isOpen ? '?' : '✖';
+    });
+
+    sendButton.addEventListener('click', sendMessage);
+
+    userInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        addMessage('user', message);
+        userInput.value = '';
+        sendButton.disabled = true;
+
+        try {
+            const botResponse = await getBotResponse(message);
+            addMessage('bot', botResponse);
+        } catch (error) {
+            addMessage('bot', 'Sorry, there was an error.');
+            console.error(error);
+        } finally {
+            sendButton.disabled = false;
+        }
+    }
+
+    function addMessage(sender, text) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.textContent = text;
+        messagesContainer.appendChild(messageElement);
+        messageElement.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function getBotResponse(message) {
+        try {
+           const chatCompletion = await groq.chat.completions.create({
+                messages: [
+                    { role: "user", content: message },
+                    { role: "system", "content": "Bitte in deutsch antworten. Du bist ein virtueller Assistent für eine Finanz-Webapplikation namens ‚Das Kundencenter – Für das Tool für klare Finanzen namend BXP‘. Deine Antworten sind sehr knapp und auf den Punkt gebracht. Folgende Daten zu Finanzen stehen dir zur Verfügung: \"type, name, betrag, intervall, konto\\nincome, Gehalt, 3000, monatlich, Konto 1\\nexpense, Miete, 900, monatlich, Konto 2\\nincome, Steuerrückzahlung, 1200, jährlich, Konto 1\\nexpense, Reparatur, 450, einmalig, Konto 1\\nexpense, Netflix, 5, monatlich, Konto 1\\nexpense, Test Ausgaben, 100, einmalig, Konto 2\\nexpense, Test Ausgabeneintrag, 100, einmalig, Konto 1\"}" }
+                ],
+                model: "llama-3.3-70b-versatile",
+                temperature: 1,
+                max_completion_tokens: 224,
+                top_p: 1,
+                stream: false,
+                stop: null,
+//                additional_data: additionalData // Pass additional data here
+            });
+
+            // Extract and return the response content
+            return chatCompletion.choices[0]?.message?.content || "No response received.";
+        } catch (error) {
+            console.error("Error while communicating with Groq API:", error);
+            throw error;
+        }
+    }
+});
+</script>
 </body>
 </html>
