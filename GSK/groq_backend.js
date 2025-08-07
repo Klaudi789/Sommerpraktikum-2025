@@ -1,0 +1,74 @@
+import Groq from 'https://esm.sh/groq-sdk';
+
+// Groq-API initialisieren
+const groq = new Groq({
+    apiKey: "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", // Ersetze dies mit deinem API-Schlüssel
+    baseUrl: "https://api.groq.com",
+    dangerouslyAllowBrowser: true // Aktiviert die Nutzung im Browser
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const messagesContainer = document.getElementById('chatbotMessages');
+    const userInput = document.getElementById('userInput');
+
+    // Toggle chatbot visibility
+    chatbotToggle.addEventListener('click', () => {
+        const isOpen = chatbotContainer.style.display === 'flex';
+        chatbotContainer.style.display = isOpen ? 'none' : 'flex';
+        chatbotToggle.textContent = isOpen ? '?' : '✖';
+    });
+
+    // Send message on button click
+    document.querySelector('.chatbot-input button').addEventListener('click', sendMessage);
+
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        addMessage('user', message);
+        userInput.value = '';
+
+        try {
+            const botResponse = await getBotResponse(message, { additionalData: "example-data" });
+            addMessage('bot', botResponse);
+        } catch (error) {
+            addMessage('bot', 'Sorry, there was an error.');
+            console.error(error);
+        }
+    }
+
+    function addMessage(sender, text) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.textContent = text;
+        messagesContainer.appendChild(messageElement);
+        messageElement.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function getBotResponse(message, additionalData) {
+        try {
+            const chatCompletion = await groq.chat.completions.create({
+                messages: [
+                    { role: "user", content: message },
+                    { role: "system", content: "This is a chatbot conversation." }
+                ],
+                model: "llama-3.1-8b-instant",
+                temperature: 1,
+                max_completion_tokens: 1024,
+                top_p: 1,
+                stream: false,
+                stop: null,
+                additional_data: additionalData // Pass additional data here
+            });
+
+            // Extract and return the response content
+            return chatCompletion.choices[0]?.message?.content || "No response received.";
+        } catch (error) {
+            console.error("Error while communicating with Groq API:", error);
+            throw error;
+        }
+    }
+});

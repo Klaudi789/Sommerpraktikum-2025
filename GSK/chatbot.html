@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Test</title>
+  
+</head>
+<body>
+    <button id="chatbotToggle" aria-label="Toggle Chatbot">?</button>
+    <div class="chatbot-container" id="chatbotContainer" role="dialog" aria-labelledby="chatbotHeader">
+        <div class="chatbot-header" id="chatbotHeader">Chatbot</div>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+        <div class="chatbot-input">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button>Send</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotContainer = document.getElementById('chatbotContainer');
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const userInput = document.getElementById('userInput');
+
+            chatbotToggle.addEventListener('click', () => {
+                const isOpen = chatbotContainer.style.display === 'flex';
+                chatbotContainer.style.display = isOpen ? 'none' : 'flex';
+                chatbotToggle.textContent = isOpen ? '?' : '✖';
+            });
+
+            document.querySelector('.chatbot-input button').addEventListener('click', sendMessage);
+
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (!message) return;
+
+                addMessage('user', message);
+                userInput.value = '';
+
+                setTimeout(() => {
+                    const botResponse = getBotResponse(message);
+                    addMessage('bot', botResponse);
+                }, 1000);
+            }
+
+            function addMessage(sender, text) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', sender);
+                messageElement.textContent = text;
+                messagesContainer.appendChild(messageElement);
+                messageElement.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            function getBotResponse(message) {
+                const lowerMessage = message.toLowerCase();
+                if (lowerMessage.includes('hello')) {
+                    return 'Hi there! How can I help you?';
+                } else if (lowerMessage.includes('help')) {
+                    return 'Sure! What do you need help with?';
+                } else {
+                    return 'I am not sure how to respond to that.';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

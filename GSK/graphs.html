@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chart</title>
+  <link rel="stylesheet" href="graph.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Container für das Diagramm -->
+  <div class="line-chart-container">
+    <canvas id="lineChart"></canvas>
+  </div>
+
+  <script>
+    // Die Daten aus deinem Input
+    const inputData = [
+      {
+        "id": "1",
+        "type": "income",
+        "name": "Gehalt",
+        "description": "Monatliches Gehalt",
+        "amount": 3000,
+        "recurrence": "monthly",
+        "start_date": "2023-01-01",
+        "end_date": null,
+        "editable": false,
+        "konto": "Konto 1"
+      },
+      {
+        "id": "2",
+        "type": "expense",
+        "name": "Miete",
+        "description": "Monatliche Mietzahlung",
+        "amount": 900,
+        "recurrence": "monthly",
+        "start_date": "2023-01-01",
+        "end_date": null,
+        "editable": false,
+        "konto": "Konto 2"
+      },
+      {
+        "id": "3",
+        "type": "income",
+        "name": "Steuerrückzahlung",
+        "description": "Rückzahlung vom Finanzamt",
+        "amount": 1200,
+        "recurrence": "yearly",
+        "start_date": "2023-06-01",
+        "end_date": null,
+        "editable": false,
+        "konto": "Konto 1"
+      },
+      {
+        "id": "4",
+        "type": "expense",
+        "name": "Reparatur",
+        "description": "Auto-Reparatur",
+        "amount": 450,
+        "recurrence": "once",
+        "start_date": "2023-05-01",
+        "end_date": null,
+        "editable": false,
+        "konto": "Konto 1"
+      },
+      {
+        "id": "5",
+        "type": "expense",
+        "name": "Netflix",
+        "description": "Netflix Abonnement",
+        "amount": 5,
+        "recurrence": "monthly",
+        "start_date": "2023-07-01",
+        "end_date": "2023-09-01",
+        "editable": false,
+        "konto": "Konto 1"
+      },
+      {
+        "id": "6",
+        "type": "expense",
+        "name": "Test Ausgaben",
+        "description": "Test Beschreibung",
+        "amount": 100,
+        "recurrence": "once",
+        "start_date": "2023-10-01",
+        "end_date": null,
+        "editable": true,
+        "konto": "Konto 2"
+      },
+      {
+        "id": "6",
+        "type": "expense",
+        "name": "Test Ausgabeneentrag",
+        "description": "Test Beschreibung",
+        "amount": 100,
+        "recurrence": "once",
+        "start_date": "2023-10-01",
+        "end_date": null,
+        "editable": true,
+        "konto": "Konto 1"
+      }
+    ];
+
+    // Monate
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    // Summiere Einkommen und Ausgaben pro Monat
+    const incomeData = new Array(12).fill(0);
+    const expenseData = new Array(12).fill(0);
+
+    inputData.forEach(entry => {
+      const startMonth = new Date(entry.start_date).getMonth();
+      const endMonth = entry.end_date ? new Date(entry.end_date).getMonth() : 11;
+
+      if (entry.recurrence === "monthly") {
+        for (let i = startMonth; i <= endMonth; i++) {
+          if (entry.type === "income") {
+            incomeData[i] += entry.amount;
+          } else if (entry.type === "expense") {
+            expenseData[i] += entry.amount;
+          }
+        }
+      } else if (entry.recurrence === "yearly") {
+        if (entry.type === "income") {
+          incomeData[startMonth] += entry.amount;
+        }
+      } else if (entry.recurrence === "once") {
+        if (entry.type === "income") {
+          incomeData[startMonth] += entry.amount;
+        } else if (entry.type === "expense") {
+          expenseData[startMonth] += entry.amount;
+        }
+      }
+    });
+
+    // Chart.js Daten
+    const data = {
+      labels: months,
+      datasets: [
+        {
+          label: "Einkommen",
+          data: incomeData,
+          borderColor: "#5899DA",
+          backgroundColor: "rgba(88, 153, 218, 0.1)",
+          fill: false,
+          borderWidth: 1,
+          pointRadius: 1, // Punktgröße kleiner machen
+        },
+        {
+          label: "Ausgaben",
+          data: expenseData,
+          borderColor: "#E8743B",
+          backgroundColor: "rgba(232, 116, 59, 0.1)",
+          fill: false,
+          borderWidth: 1,
+          pointRadius: 1, // Punktgröße kleiner machen
+        }
+      ]
+    };
+
+    // Chart.js Optionen
+    const options = {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+        }
+      },
+      scales: {
+        x: {
+            title: {
+            display: true,
+            text: 'Monate'
+            },
+            grid: {
+            display: false // Versteckt die vertikalen Linien
+            }
+        },
+        y: {
+            grid: {
+            drawTicks: false,
+            drawBorder: false,
+            color: "#CCCCCC", // Nur horizontale Linien
+            lineWidth: 0.5,    // Linienbreite
+            },
+            ticks: {
+            stepSize: 500,
+            },
+            title: {
+            display: true,
+            text: 'Beträge (€)'
+            }
+        }
+        }
+    };
+
+    // Diagramm erstellen
+    const ctx = document.getElementById('lineChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options,
+    });
+  </script>
+</body>
+</html>

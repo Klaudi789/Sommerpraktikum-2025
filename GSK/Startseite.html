@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAP Shell Bar</title>
+    <link rel="stylesheet" href="Startseite.css" />
+    <!-- SAP Icons -->
+    <link rel="stylesheet" href="https://ui5.sap.com/resources/sap/ui/core/themes/base/SAP-icons.css" />
+    <style>
+        .icon,
+        .arrow {
+            font-family: "SAP-icons";
+            font-size: 20px;
+            color: #d1e8ff;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1;
+            vertical-align: middle;
+            display: inline-block;
+        }
+    </style>
+  <link rel="stylesheet" href="graph.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="linechart.js"></script>
+   <script src="BarChart.js"></script>
+
+</head>
+
+<body>
+    <!-- Shell Bar Beginn -->
+    <header class="sap-header">
+        <!-- Left -->
+        <div class="base-Shell-Content-Left">
+            <div class="base-Back-Button">
+                <span class="icon">&#xe067;</span>
+            </div>
+            <div class="base-branding">
+                <img src="sap_logo.png" alt="SAP Logo" class="sap-logo" width="60" height="30" />
+            </div>
+            <div class="base-page-title dropdown">
+                <span class="title-text">Startseite</span>
+                <span class="arrow">&#xe1ef;</span>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Startseite</a></li>
+                    <li><a href="#">Verwaltung</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Right -->
+        <div class="base-Shell-Content-Right">
+            <div class="base-Button-a">
+                <span class="icon">&#xe00d;</span>
+            </div>
+            <div class="base-Button-b">
+                <span class="icon">&#xe1c2;</span>
+            </div>
+            <div class="base-Button-c">
+                <span class="icon">&#xe033;</span>
+            </div>
+            <div class="base-User-Actions-Menu">
+                <img src="user-avatar.jpg" alt="User Avatar" class="avatar" width="32" height="32" />
+            </div>
+        </div>
+    </header>
+    <script>
+        document.querySelector('.base-Back-Button').onclick = function () {
+            window.history.back();
+        };
+    </script>
+    <!-- Shell Bar End -->
+    <!-- First Block Beginn -->
+
+    <div class="main-content">
+        <div class="account-summary">
+            <div class="greeting">Hallo, {Kunde}</div>
+            <div class="balance">Der Kontostand beträgt <span class="balance-amount">20,000.10&nbsp;€</span></div>
+            <div class="activity-title">Letzte Aktivität</div>
+            <div class="activity-table-wrapper">
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Bezeichnung</th>
+                            <th>Datum</th>
+                            <th>Betrag (EUR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jologa</td>
+                            <td>11.05.2021</td>
+                            <td class="plus">+ 12,600.16</td>
+                        </tr>
+                        <tr>
+                            <td>Exotic Liquids</td>
+                            <td>09.05.2021</td>
+                            <td class="minus">- 4,999.98</td>
+                        </tr>
+                        <tr>
+                            <td>Lyngbysild</td>
+                            <td>08.05.2021</td>
+                            <td class="minus">- 2,100</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="software-panel">
+            <button class="add-btn">Hinzufügen</button>
+            <div class="software-title">Entdecke SAP BXP!</div>
+            <div class="software-buttons">
+                <button class="software-btn">Verwalten</button>
+                <button class="software-btn">ERP</button>
+                <button class="software-btn">Premium Support</button>
+            </div>
+                </div>
+    <div class="line-chart-container activity-table-wrapper">
+        <div class="activity-title">Prognose</div>
+        <canvas id="lineChart"></canvas>
+  </div>
+  <script>
+    // Nur der Pfad zur JSON und der Aufruf!
+    erstelleLineChartAusDatei('lineChart', 'data.json');
+  </script>
+<div class="bar-chart-container activity-table-wrapper">
+  <div class="activity-title">Balkendiagramm</div>
+  <canvas id="stackedBarChart"></canvas>
+</div>
+    <script>
+        // Nur der Pfad zur JSON und der Aufruf!
+        erstelleBarchartAusDatei('stackedBarChart', 'data.json');
+    </script>
+        
+
+</div>
+
+
+    <!-- End of First Block -->
+</body>
+
+</html>
+
+<!-- Shell Bar End -->

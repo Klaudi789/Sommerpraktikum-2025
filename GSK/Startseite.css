@@ -1,0 +1,438 @@
+
+
+/* Shell Bar */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 60px); /* Höhe des Headers abziehen */
+    width: 100%;
+    background-color: #f4f4f4; /* Beispielhintergrund */
+}
+.sap-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 16px; /* Kompaktes Padding */
+    gap: 8px;
+    position: fixed; /* Fixiert den Header am oberen Rand */
+    top: 0;
+    left: 0;
+    width: 100%; /* Nimmt die gesamte Breite ein */
+    height: 60px;
+    background: #354a5f;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Dezenter Schatten */
+    z-index: 1000; /* Stellt sicher, dass der Header über anderen Inhalten bleibt */
+    box-sizing: border-box; /* Berücksichtigt Padding in der Breite */
+    overflow: visible; /* Wichtig: Ermöglicht das Dropdown-Menü außerhalb des Headers */
+}
+
+
+
+
+/* Content Left */
+.base-Shell-Content-Left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; /* изменено */
+  align-items: center;
+  padding: 0;
+  gap: 8px;
+  width: 215px;
+  height: 36px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+
+/* Back Button */
+.base-Back-Button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  font-family: "SAP-icons";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 17px;
+  text-align: center;
+  color: #d1e8ff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* Branding */
+.base-branding {
+  display: flex;
+  flex-direction: column;
+  justify-content: row;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0; /* было 3px 4px, замените на 0 */
+  gap: 0;     /* было 10px, замените на 0 */
+  width: 60px;
+  height: 36px;
+  border-radius: 4px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  background: linear-gradient(180deg, #2ba7e7 0%, #145fad 48.96%, #274494 100%);
+}
+
+
+/* Page Title */
+.base-page-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 10px;
+  gap: 4px;
+  width: auto;      
+  height: 50px;     
+  border-radius: 4px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+/* ...existing code... */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 140px;
+  background: #354a5f;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  border-radius: 4px;
+  padding: 8px 0;
+  z-index: 10;
+  margin-top: 0;
+}
+
+/* ...existing code... */
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu,
+.dropdown-menu:hover {
+  display: block;
+}
+/* ...existing code... */
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 16px;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: #2ba7e7;
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+/* ...existing code... */
+
+/* Content Right */
+.base-Shell-Content-Right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; /* изменено */
+  align-items: center;
+  padding: 0;
+  gap: 8px;
+  /* Удалите margin: 0 auto; */
+  width: 168px;
+  height: 36px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+/* ...existing code... */
+
+/* Buttons */
+.base-Button-a,
+.base-Button-b,
+.base-Button-c {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  font-family: "SAP-icons";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 17px;
+  text-align: center;
+  color: #d1e8ff;
+  flex: none;
+  flex-grow: 0;
+}
+
+.base-Button-a {
+  order: 0;
+}
+.base-Button-b {
+  order: 1;
+}
+.base-Button-c {
+  order: 2;
+}
+
+/* User Actions Menu */
+.base-User-Actions-Menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 10px;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  order: 3;
+  flex-grow: 0;
+  position: relative;
+}
+
+.base-User-Actions-Menu .avatar {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  background: #f7f7f7 url("Image.png") center center/cover no-repeat;
+  border: 1px solid #ababab;
+  border-radius: 50%;
+}
+ /*Shell Bar End*/
+
+ /* First Block Beginn */
+
+.account-summary {
+  max-width: 700px;
+  width: 650px;
+  flex: 1 1 0;
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+}
+
+
+.greeting {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.balance {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
+.balance-amount {
+  color: #e53935;
+  font-weight: 700;
+}
+
+.activity-title {
+  color: #888;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+/* ...existing code... */
+
+.activity-table-wrapper {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  margin-top: 8px;
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 15px;
+}
+
+.activity-table th {
+  text-align: left;
+  color: #888;
+  font-weight: 500;
+  padding: 8px 0 8px 0;
+  background: #f7f7f7;
+  border-bottom: 1.5px solid #e0e0e0;
+}
+
+.activity-table td {
+  padding: 10px 0 10px 0;
+  color: #222;
+  border: none;
+  vertical-align: middle;
+}
+
+.activity-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.activity-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.activity-table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.activity-table td.plus {
+  color: #43a047;
+  font-weight: 500;
+}
+
+.activity-table td.minus {
+  color: #e53935;
+  font-weight: 500;
+}
+
+/* End of First Block */
+
+/* Second Block Beginn */
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 80px;
+  gap: 64px;
+}
+
+.account-summary {
+  max-width: 700px;
+  flex: 1 1 0;
+}
+
+.software-panel {
+  min-width: 420px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 32px 32px 40px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+}
+
+.add-btn {
+  align-self: flex-end; /* Кнопка у правого края */
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 32px;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 18px;
+}
+.add-btn:hover {
+  background: #125ea2;
+}
+
+.software-title {
+  color: #666;
+  font-size: 20px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.software-buttons {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  justify-content: center;
+}
+
+.software-btn {
+  flex: 1 1 0;
+  min-width: 120px;
+  min-height: 140px;
+  border: 2px solid #1976d2;
+  border-radius: 10px;
+  background: #fff;
+  color: #1976d2;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  transition: box-shadow 0.2s, border 0.2s;
+  cursor: pointer;
+  padding: 10px;
+  outline: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.software-btn:hover, .software-btn:focus {
+  box-shadow: 0 2px 8px rgba(25,118,210,0.08);
+  border: 2.5px solid #125ea2;
+  background: #f5faff;
+}
+
+/* End of Second Block */

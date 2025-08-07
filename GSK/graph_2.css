@@ -1,0 +1,110 @@
+/* Container für die Karten */
+.base-card-content {
+  box-sizing: border-box;
+  position: relative; /* Ermöglicht absolute Positionierung der Kinder */
+  width: 304px;
+  height: 299px;
+  margin: auto; /* Zentriert den Container */
+  border: 1px solid #F0F0F0;
+}
+
+/* Chart-Container */
+.chart {
+  position: relative; /* Position relativ zum Eltern-Container */
+  width: 100%; /* Nimmt die volle Breite des Containers ein */
+  height: 260px; /* Höhe des Charts */
+  margin: auto; /* Zentriert den Chart */
+}
+
+/* Titel für die Diagramm-Sektion */
+.by-revenue-and-cost {
+  position: relative;
+  width: 242px;
+  height: 22px;
+  font-family: 'Roboto', sans-serif; /* Sicherstellen, dass die Schriftart geladen wird */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #32363A;
+  margin-bottom: 10px; /* Abstand zum Chart */
+}
+
+/* Horizontale Linie als Trennlinie */
+.stroke {
+  position: relative;
+  height: 1px;
+  border: 1px solid #D9D9D9;
+  margin: 10px 0; /* Abstand oben und unten */
+}
+
+/* Zahlen-Styling */
+.zahl {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+  color: #6A6D70;
+}
+
+/* Kalenderwochen (CW) Styling */
+.cw {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: #32363A;
+}
+
+/* Balken (Columns) */
+.column {
+  box-sizing: border-box;
+  position: relative;
+  background: #5899DA; /* Blau für Gewinn */
+  border: 1px solid #FFFFFF;
+}
+
+.column-cost {
+  background: #E8743B; /* Orange für Kosten */
+}
+
+/* Labels für Diagramme */
+.label {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #333333;
+}
+
+/* Rechtecke für Legende */
+.rectangle {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  background: #5899DA; /* Blau für Gewinn */
+}
+
+.rectangle-cost {
+  background: #E8743B; /* Orange für Kosten */
+}
+
+/* Responsive Darstellung */
+@media (max-width: 768px) {
+  .base-card-content {
+    width: 100%;
+    height: auto;
+  }
+
+  .chart {
+    height: 200px; /* Reduzierte Höhe auf kleineren Geräten */
+  }
+}

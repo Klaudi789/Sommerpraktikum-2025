@@ -1,0 +1,109 @@
+    .line-chart-container {
+      position: absolute;
+      width: 726px;
+      height: 315px;
+      left: 185px;
+      top: 611px;
+      background: #FFFFFF;
+    }
+
+    /* Monatstexte */
+    .month-label {
+      position: absolute;
+      height: 15px;
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 15px;
+      text-align: center;
+      color: #32363A;
+    }
+
+    /* Trennlinien */
+    .separator-line {
+      position: absolute;
+      background: #CCCCCC;
+      height: 2px;
+    }
+
+    /* Scrollbar */
+    .scrollbar {
+      box-sizing: border-box;
+      position: absolute;
+      width: 12px;
+      height: 878px;
+      border: 1px solid #000000;
+      background: #B2B2B2;
+      transform: rotate(-90deg);
+    }
+
+    /* Legende */
+    .legend {
+      position: absolute;
+      visibility: hidden;
+      width: 155px;
+      height: 87px;
+    }
+
+    /* Linien für das Diagramm */
+    .chart-line {
+      position: absolute;
+      border: 1px solid;
+    }
+
+    .chart-line-dashed {
+      position: absolute;
+      border: 1px dashed;
+    }
+
+    /* Ovale für das Diagramm */
+    .chart-oval {
+      position: absolute;
+      background: #E8743B;
+      border: 1px solid #FFFFFF;
+    }
+
+    /* Zusätzliche Elemente */
+    .pizza-forecast {
+      position: absolute;
+      width: 128px;
+      height: 15px;
+      left: calc(50% - 128px/2 + 540px);
+      top: calc(50% - 15px/2 - 176px);
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-size: 13px;
+      line-height: 15px;
+      text-align: center;
+      color: #32363A;
+    }
+
+    .ice-cream-forecast {
+      position: absolute;
+      width: 155px;
+      height: 15px;
+      left: calc(50% - 155px/2 + 553.5px);
+      top: calc(50% - 15px/2 - 224px);
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-size: 13px;
+      line-height: 15px;
+      text-align: center;
+      color: #32363A;
+    }
+
+.text-ueberschrift {
+  position: absolute;
+  height: 31px;
+  left: 6.56%;
+  right: 83.85%;
+  top: calc(50% - 31px / 2 + 26.5px);
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 36px; /* 150% von 24px */
+  color: #515559;
+}

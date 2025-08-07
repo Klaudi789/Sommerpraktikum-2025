@@ -1,0 +1,86 @@
+[
+  {
+    "id": "1",
+    "type": "income",
+    "name": "Gehalt",
+    "description": "Monatliches Gehalt",
+    "betrag": 3000,
+    "intervall": "monatlich",
+    "start_datum": "2023-01-01",
+    "enddatum": "laufend",
+    "editable": false,
+    "konto": "Konto 1"
+  },
+  {
+    "id": "2",
+    "type": "expense",
+    "name": "Miete",
+    "description": "Monatliche Mietzahlung",
+    "betrag": 900,
+    "intervall": "monatlich",
+    "start_datum": "2023-01-01",
+    "enddatum": "laufend",
+    "editable": false,
+    "konto": "Konto 2"
+  },
+  {
+    "id": "3",
+    "type": "income",
+    "name": "Steuerrückzahlung",
+    "description": "Rückzahlung vom Finanzamt",
+    "betrag": 1200,
+    "intervall": "jährlich",
+    "start_datum": "2023-06-01",
+    "enddatum": "laufend",
+    "editable": false,
+    "konto": "Konto 1"
+  },
+  {
+    "id": "4",
+    "type": "expense",
+    "name": "Reparatur",
+    "description": "Auto-Reparatur",
+    "betrag": 450,
+    "intervall": "einmalig",
+    "start_datum": "2023-05-01",
+    "enddatum": "laufend",
+    "editable": false,
+    "konto": "Konto 1"
+  },
+  {
+    "id": "5",
+    "type": "expense",
+    "name": "Netflix",
+    "description": "Netflix Abonnement",
+    "betrag": 5,
+    "intervall": "monatlich",
+    "start_datum": "2023-07-01",
+    "enddatum": "2023-09-01",
+    "editable": false,
+    "konto": "Konto 1"
+  },
+  {
+    "id": "6",
+    "type": "expense",
+    "name": "Test Ausgaben",
+    "description": "Test Beschreibung",
+    "betrag": 100,
+    "intervall": "einmalig",
+    "start_datum": "2023-10-01",
+    "enddatum": "laufend",
+    "editable": true,
+    "konto": "Konto 2"
+  },
+  {
+    "id": "7",
+    "type": "expense",
+    "name": "Test Ausgabeneentrag",
+    "description": "Test Beschreibung",
+    "betrag": 100,
+    "intervall": "einmalig",
+    "start_datum": "2023-10-01",
+    "enddatum": "laufend",
+    "editable": true,
+    "konto": "Konto 1"
+  }
+]

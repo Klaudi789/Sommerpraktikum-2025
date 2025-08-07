@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balkendiagramm</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="BarChart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* Hier ist das CSS aus meiner vorherigen Antwort */
+    .base-card-content {
+      box-sizing: border-box;
+      position: relative;
+      width: 304px;
+      height: 299px;
+      margin: auto;
+      border: 1px solid #F0F0F0;
+    }
+
+    .chart {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      margin: auto;
+    }
+
+    .by-revenue-and-cost {
+      position: relative;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      color: #32363A;
+      margin-bottom: 10px;
+    }
+
+    .stroke {
+      position: relative;
+      height: 1px;
+      border: 1px solid #D9D9D9;
+      margin: 10px 0;
+    }
+
+    @media (max-width: 768px) {
+      .base-card-content {
+        width: 100%;
+        height: auto;
+      }
+
+      .chart {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Container für das Balkendiagramm -->
+  <div class="base-card-content">
+    <div class="chart">
+      <canvas id="stackedBarChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // Aufruf der Funktion, um das Balkendiagramm zu erstellen
+    erstelleStackedBarChartAusDatei('stackedBarChart', 'data.json');
+  </script>
+</body>
+</html>
