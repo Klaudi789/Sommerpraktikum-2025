@@ -3,6 +3,7 @@
 Mockup (neu link) :
 
 https://www.figma.com/design/QR2XaFj7QnkfAuRReZWq3j/Web_SAP_FN?node-id=0-1&t=siqnBfRrWr6kz57N-1 
+https://www.canva.com/design/DAGvY7UCyjU/p-AhBw5nuQZzk5hqdXab0A/edit?utm_content=DAGvY7UCyjU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
 Um den Server zu starten muss zuerst Node.js installiert werden
