@@ -14,8 +14,8 @@
 </head>
 
 <body>
-    <!-- Header -->
-  <header class="sap-header">
+    <!-- Shell Bar Beginn -->
+    <header class="sap-header">
         <!-- Left -->
         <div class="base-Shell-Content-Left">
             <div class="base-Back-Button">
@@ -25,31 +25,29 @@
                 <img src="sap_logo.png" alt="SAP Logo" class="sap-logo" width="60" height="30" />
             </div>
             <div class="base-page-title dropdown">
-                <span class="title-text">Support</span>
+                <span class="title-text">Startseite</span>
                 <span class="arrow">&#xe1ef;</span>
-                <ul class="dropdown-menu">                    
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Startseite</a></li>
-                    <li><a href="#">Verwaltung</a></li>
+                <ul class="dropdown-menu">
+                    <li><a href="/Startseite.html">Startseite</a></li>
+                    <li><a href="/verwaltung.html">Verwaltung</a></li>
+                    <li><a href="/support.html">Support</a></li>
                 </ul>
             </div>
         </div>
         <!-- Right -->
         <div class="base-Shell-Content-Right">
-            <div class="base-Button-a">
-                <span class="icon">&#xe00d;</span>
-            </div>
-            <div class="base-Button-b">
-                <span class="icon">&#xe1c2;</span>
-            </div>
-            <div class="base-Button-c">
-                <span class="icon">&#xe033;</span>
-            </div>
             <div class="base-User-Actions-Menu">
                 <img src="user-avatar.jpg" alt="User Avatar" class="avatar" width="32" height="32" />
             </div>
         </div>
     </header>
+    <script>
+        document.querySelector('.base-Back-Button').onclick = function () {
+            window.history.back();
+        };
+    </script>
+    <!-- Shell Bar End -->
+    <!-- First Block Beginn -->
     <!-- FAQ Section -->
     <div class="faq-section">
         <h2>Häufig gestellte Fragen</h2>
