@@ -5,12 +5,12 @@
 .sap-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between; /* уже есть, оставьте */
+  justify-content: space-between; 
   align-items: center;
   padding: 4px 48px;
   gap: 8px;
   position: absolute;
-  width: 1430px; /* замените на 100vw для адаптивности */
+  width: 1430px; 
   min-width: 0;
   max-width: 100vw;
   height: 58px;
@@ -24,7 +24,7 @@
 .base-Shell-Content-Left {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start; /* изменено */
+  justify-content: flex-start; 
   align-items: center;
   padding: 0;
   gap: 8px;
@@ -66,8 +66,8 @@
   justify-content: row;
   align-items: center;
   vertical-align: middle;
-  padding: 0; /* было 3px 4px, замените на 0 */
-  gap: 0;     /* было 10px, замените на 0 */
+  padding: 0; 
+  gap: 0;     
   width: 60px;
   height: 36px;
   border-radius: 4px;
@@ -100,7 +100,6 @@
   flex-grow: 0;
 }
 
-/* ...existing code... */
 .dropdown {
   position: relative;
   cursor: pointer;
@@ -121,13 +120,13 @@
   margin-top: 0;
 }
 
-/* ...existing code... */
+
 .dropdown:hover .dropdown-menu,
 .dropdown:focus-within .dropdown-menu,
 .dropdown-menu:hover {
   display: block;
 }
-/* ...existing code... */
+
 
 .dropdown-menu li {
   list-style: none;
@@ -151,24 +150,22 @@
 .dropdown:hover .dropdown-menu {
   display: block;
 }
-/* ...existing code... */
+
 
 /* Content Right */
 .base-Shell-Content-Right {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end; /* изменено */
+  justify-content: flex-end; 
   align-items: center;
   padding: 0;
   gap: 8px;
-  /* Удалите margin: 0 auto; */
   width: 168px;
   height: 36px;
   flex: none;
   order: 2;
   flex-grow: 0;
 }
-/* ...existing code... */
 
 /* Buttons */
 .base-Button-a,
@@ -378,7 +375,6 @@
   margin-bottom: 8px;
 }
 
-/* ...existing code... */
 
 .activity-table-wrapper {
   background: #fff;
