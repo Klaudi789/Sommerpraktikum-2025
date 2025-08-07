@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verwaltung</title>
+  <link rel="stylesheet" href="Startseite.css" />
+    <!-- SAP Icons -->
+    <link rel="stylesheet" href="https://ui5.sap.com/resources/sap/ui/core/themes/base/SAP-icons.css" />
+    <style>
+        .icon,
+        .arrow {
+            font-family: "SAP-icons";
+            font-size: 20px;
+            color: #d1e8ff;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1;
+            vertical-align: middle;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+  <!-- Shell Bar Beginn -->
+    <header class="sap-header">
+        <!-- Left -->
+        <div class="base-Shell-Content-Left">
+            <div class="base-Back-Button">
+                <span class="icon">&#xe067;</span>
+            </div>
+            <div class="base-branding">
+                <img src="sap_logo.png" alt="SAP Logo" class="sap-logo" width="60" height="30" />
+            </div>
+            <div class="base-page-title dropdown">
+                <span class="title-text">Startseite</span>
+                <span class="arrow">&#xe1ef;</span>
+                <ul class="dropdown-menu">
+                    <li><a href="/Startseite.html">Startseite</a></li>
+                    <li><a href="/verwaltung.html">Verwaltung</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Right -->
+        <div class="base-Shell-Content-Right">
+            <div class="base-User-Actions-Menu">
+                <img src="user-avatar.jpg" alt="User Avatar" class="avatar" width="32" height="32" />
+            </div>
+        </div>
+    </header>
+    <script>
+        document.querySelector('.base-Back-Button').onclick = function () {
+            window.history.back();
+        };
+    </script>
+    <!-- Shell Bar End -->
+
+  <div class="filter-form" style="padding-top: 70px;">
+  <label for="filterID">ID:</label>
+  <input type="text" id="filterID" placeholder="z. B. 1 oder abc123">
+
+  <label for="filterName">Name:</label>
+  <input type="text" id="filterName" placeholder="z. B. Miete">
+
+  <label for="filterType">Typ:</label>
+  <select id="filterType">
+    <option value="all">Alles</option>
+    <option value="income">Einnahme</option>
+    <option value="expense">Ausgabe</option>
+  </select>
+
+  <label for="filterInterval">Intervall:</label>
+  <select id="filterInterval">
+    <option value="all">Alles</option>
+    <option value="einmalig">einmalig</option>
+    <option value="monatlich">monatlich</option>
+    <option value="jährlich">jährlich</option>
+  </select>
+
+  <label for="filterAccount">Konto:</label>
+  <input type="text" id="filterAccount" placeholder="z. B. Konto 1">
+
+  <label for="startDateFrom">Startdatum von:</label>
+  <input type="date" id="startDateFrom">
+
+  <label for="startDateTo">Startdatum bis:</label>
+  <input type="date" id="startDateTo">
+
+  <label for="sortierung">Sortieren nach:</label>
+  <select id="sortierung">
+  <option value="none">Keine Sortierung</option>
+  <option value="nameAZ">Name A–Z</option>
+  <option value="betragAuf">Betrag aufsteigend</option>
+  <option value="betragAb">Betrag absteigend</option>
+  <option value="startAltJung">Startdatum alt → jung</option>
+  <option value="startJungAlt">Startdatum jung → alt</option>
+  </select>
+  <div class="software-buttons">
+  <button class="software-btn_mini" id="anzeigenButton">Einträge anzeigen</button>
+  <button class="software-btn_mini" id="hinzufuegenButton">Eintrag hinzufügen</button>
+  </div>
+</div>
+
+<div id="tabelle1" class="activity-table-wrapper"></div>
+
+  <!-- Main JS (Modul) -->
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

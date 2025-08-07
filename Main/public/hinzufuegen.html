@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuen Eintrag hinzufügen</title>
+  <link rel="stylesheet" href="Startseite.css" />
+  <!-- SAP Icons -->
+    <link rel="stylesheet" href="https://ui5.sap.com/resources/sap/ui/core/themes/base/SAP-icons.css" />
+    <style>
+        .icon,
+        .arrow {
+            font-family: "SAP-icons";
+            font-size: 20px;
+            color: #d1e8ff;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1;
+            vertical-align: middle;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Shell Bar Beginn -->
+    <header class="sap-header">
+        <!-- Left -->
+        <div class="base-Shell-Content-Left">
+            <div class="base-Back-Button">
+                <span class="icon">&#xe067;</span>
+            </div>
+            <div class="base-branding">
+                <img src="sap_logo.png" alt="SAP Logo" class="sap-logo" width="60" height="30" />
+            </div>
+            <div class="base-page-title dropdown">
+                <span class="title-text">Startseite</span>
+                <span class="arrow">&#xe1ef;</span>
+                <ul class="dropdown-menu">
+                    <li><a href="/Startseite.html">Startseite</a></li>
+                    <li><a href="/verwaltung.html">Verwaltung</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Right -->
+        <div class="base-Shell-Content-Right">
+            <div class="base-User-Actions-Menu">
+                <img src="user-avatar.jpg" alt="User Avatar" class="avatar" width="32" height="32" />
+            </div>
+        </div>
+    </header>
+    <script>
+        document.querySelector('.base-Back-Button').onclick = function () {
+            window.history.back();
+        };
+    </script>
+    <!-- Shell Bar End -->
+    <div>
+  <h1>Neuen Eintrag hinzufügen</h1>
+
+  <form id="eintragForm">
+    <label>
+      Name:
+      <input type="text" id="name" required />
+    </label><br />
+
+    <label>
+      Typ:
+      <select id="type" required>
+        <option value="income">Einnahme</option>
+        <option value="expense">Ausgabe</option>
+      </select>
+    </label><br />
+
+    <label>
+      Intervall:
+      <select id="recurrence" required>
+        <option value="einmalig">einmalig</option>
+        <option value="monatlich">monatlich</option>
+        <option value="jährlich">jährlich</option>
+      </select>
+    </label><br />
+
+    <label>
+      Startdatum:
+      <input type="date" id="start_date" required />
+    </label><br />
+
+    <label>
+      Enddatum:
+      <input type="date" id="end_date" />
+      <label><input type="checkbox" id="unbegrenzt" /> unbegrenzt</label>
+    </label><br />
+
+    <label>
+      Betrag:
+      <input type="number" id="amount" step="0.01" required />
+    </label><br />
+
+    <label>
+      Beschreibung:
+      <input type="text" id="description" />
+    </label><br />
+    <div class="software-buttons">
+    <button class="software-btn_mini" type="submit">Eintrag hinzufügen</button>
+    <button class="software-btn_mini" type="button" id="abbrechenButton">Abbrechen</button>
+    </div>
+  </form>
+
+  <p id="meldung"></p>
+  </div>
+
+  <script type="module" src="addEntry.js"></script>
+</body>
+</html>
