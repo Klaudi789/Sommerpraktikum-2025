@@ -1,11 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://ui5.sap.com/resources/sap/ui/core/themes/base/SAP-icons.css" />
+
+    <title>SAP Premium Support</title>
+    <link rel="stylesheet" href="Startseite.css" />
+    <link rel="stylesheet" href="support.css" />
+    <link rel="stylesheet" href="chatbot.css" />
+
+</head>
+
+<body>
+    <!-- Header -->
+  <header class="sap-header">
+        <!-- Left -->
+        <div class="base-Shell-Content-Left">
+            <div class="base-Back-Button">
+                <span class="icon">&#xe067;</span>
+            </div>
+            <div class="base-branding">
+                <img src="sap_logo.png" alt="SAP Logo" class="sap-logo" width="60" height="30" />
+            </div>
+            <div class="base-page-title dropdown">
+                <span class="title-text">Support</span>
+                <span class="arrow">&#xe1ef;</span>
+                <ul class="dropdown-menu">                    
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Startseite</a></li>
+                    <li><a href="#">Verwaltung</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Right -->
+        <div class="base-Shell-Content-Right">
+            <div class="base-Button-a">
+                <span class="icon">&#xe00d;</span>
+            </div>
+            <div class="base-Button-b">
+                <span class="icon">&#xe1c2;</span>
+            </div>
+            <div class="base-Button-c">
+                <span class="icon">&#xe033;</span>
+            </div>
+            <div class="base-User-Actions-Menu">
+                <img src="user-avatar.jpg" alt="User Avatar" class="avatar" width="32" height="32" />
+            </div>
+        </div>
+    </header>
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>Häufig gestellte Fragen</h2>
+        <div class="faq">
+            <div class="faq-question">1. Wie kann ich den Support kontaktieren? <span>&#9660;</span></div>
+            <div class="faq-answer">Sie können uns über das Kontaktformular unten erreichen. Wir antworten innerhalb von 10 Minuten!</div>
+        </div>
+        <div class="faq">
+            <div class="faq-question">2. Was ist der Premium Support? <span>&#9660;</span></div>
+            <div class="faq-answer">Der Premium Support bietet Ihnen priorisierte Hilfe und exklusive Funktionen.</div>
+        </div>
+        <div class="faq">
+            <div class="faq-question">3. Wie lange dauert die Bearbeitung meiner Anfrage? <span>&#9660;</span></div>
+            <div class="faq-answer">Wir garantieren eine Antwort innerhalb von 10 Minuten.</div>
+        </div>
+        <div class="faq">
+            <div class="faq-question">4. Kann ich meine Anfrage stornieren? <span>&#9660;</span></div>
+            <div class="faq-answer">Ja, Sie können Ihre Anfrage jederzeit über das Kontaktformular stornieren.</div>
+        </div>
+        <div class="faq">
+            <div class="faq-question">5. Welche Sprachen werden unterstützt? <span>&#9660;</span></div>
+            <div class="faq-answer">Wir unterstützen Deutsch, Englisch und viele weitere Sprachen.</div>
+        </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <h2>Kontaktformular</h2>
+        <form>
+            <label for="name">Ihr Name</label>
+            <input type="text" id="name" placeholder="Bitte geben Sie Ihren Namen ein" required />
+
+            <label for="email">Ihre E-Mail-Adresse</label>
+            <input type="email" id="email" placeholder="Bitte geben Sie Ihre E-Mail-Adresse ein" required />
+
+            <label for="message">Ihre Nachricht</label>
+            <textarea id="message" rows="5" placeholder="Bitte geben Sie Ihre Nachricht ein" required></textarea>
+
+            <button type="submit">Absenden</button>
+        </form>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">Vielen Dank für Ihre Nachricht! Wir antworten innerhalb von 10 Minuten.</div>
+
+    <script>
+        // FAQ Interaktivität
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Kontaktformular Toast
+        document.querySelector('.contact-form form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+     <button id="chatbotToggle" aria-label="Toggle Chatbot">?</button>
+    <div class="chatbot-container" id="chatbotContainer" role="dialog" aria-labelledby="chatbotHeader">
+        <div class="chatbot-header" id="chatbotHeader">BXP Support</div>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+        <div class="chatbot-input">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button>Send</button>
+        </div>
+    </div>
+<script type="module">
 import Groq from 'https://esm.sh/groq-sdk';
 
-// Groq-API initialisieren
 const groq = new Groq({
-    apiKey: "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", // Ersetze dies mit deinem API-Schlüssel
+    apiKey: "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", // NICHT für Produktion!
     baseUrl: "https://api.groq.com",
-    dangerouslyAllowBrowser: true // Aktiviert die Nutzung im Browser
-
+    dangerouslyAllowBrowser: true
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,16 +137,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatbotContainer = document.getElementById('chatbotContainer');
     const messagesContainer = document.getElementById('chatbotMessages');
     const userInput = document.getElementById('userInput');
+    const sendButton = document.querySelector('.chatbot-input button');
 
-    // Toggle chatbot visibility
     chatbotToggle.addEventListener('click', () => {
         const isOpen = chatbotContainer.style.display === 'flex';
         chatbotContainer.style.display = isOpen ? 'none' : 'flex';
         chatbotToggle.textContent = isOpen ? '?' : '✖';
     });
 
-    // Send message on button click
-    document.querySelector('.chatbot-input button').addEventListener('click', sendMessage);
+    sendButton.addEventListener('click', sendMessage);
+
+    userInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') sendMessage();
+    });
 
     async function sendMessage() {
         const message = userInput.value.trim();
@@ -30,13 +157,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         addMessage('user', message);
         userInput.value = '';
+        sendButton.disabled = true;
 
         try {
-            const botResponse = await getBotResponse(message, { additionalData: "example-data" });
+            const botResponse = await getBotResponse(message);
             addMessage('bot', botResponse);
         } catch (error) {
             addMessage('bot', 'Sorry, there was an error.');
             console.error(error);
+        } finally {
+            sendButton.disabled = false;
         }
     }
 
@@ -48,20 +178,20 @@ document.addEventListener('DOMContentLoaded', () => {
         messageElement.scrollIntoView({ behavior: 'smooth' });
     }
 
-    async function getBotResponse(message, additionalData) {
+    async function getBotResponse(message) {
         try {
-            const chatCompletion = await groq.chat.completions.create({
+           const chatCompletion = await groq.chat.completions.create({
                 messages: [
                     { role: "user", content: message },
-                    { role: "system", "content": "Bitte in deutsch antworten. Du bist ein virtueller Assistent für eine Finanz-Webapplikation namens ‚Das Kundencenter – Ein Tool für klare Finanzen‘. Folgende Daten zu Finanzen stehen dir zur Verfügung: \"type, name, betrag, intervall, konto\\nincome, Gehalt, 3000, monatlich, Konto 1\\nexpense, Miete, 900, monatlich, Konto 2\\nincome, Steuerrückzahlung, 1200, jährlich, Konto 1\\nexpense, Reparatur, 450, einmalig, Konto 1\\nexpense, Netflix, 5, monatlich, Konto 1\\nexpense, Test Ausgaben, 100, einmalig, Konto 2\\nexpense, Test Ausgabeneintrag, 100, einmalig, Konto 1\"}" }
+                    { role: "system", "content": "Bitte in deutsch antworten. Du bist ein virtueller Assistent für eine Finanz-Webapplikation namens ‚Das Kundencenter – Für das Tool für klare Finanzen namend BXP‘. Deine Antworten sind sehr knapp und auf den Punkt gebracht. Folgende Daten zu Finanzen stehen dir zur Verfügung: \"type, name, betrag, intervall, konto\\nincome, Gehalt, 3000, monatlich, Konto 1\\nexpense, Miete, 900, monatlich, Konto 2\\nincome, Steuerrückzahlung, 1200, jährlich, Konto 1\\nexpense, Reparatur, 450, einmalig, Konto 1\\nexpense, Netflix, 5, monatlich, Konto 1\\nexpense, Test Ausgaben, 100, einmalig, Konto 2\\nexpense, Test Ausgabeneintrag, 100, einmalig, Konto 1\"}" }
                 ],
-                model: "llama-3.1-8b-instant",
+                model: "llama-3.3-70b-versatile",
                 temperature: 1,
-                max_completion_tokens: 1024,
+                max_completion_tokens: 224,
                 top_p: 1,
                 stream: false,
                 stop: null,
-                additional_data: additionalData // Pass additional data here
+//                additional_data: additionalData // Pass additional data here
             });
 
             // Extract and return the response content
@@ -72,3 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+</script>
+</body>
+
+</html>
